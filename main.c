@@ -1,6 +1,9 @@
+#include <stdlib.h>
 #include <stdio.h>
-#include "funcs.h"
-
+#include <string.h>
+#include "Bin.h"
+#include "Oct.h"
+#include "Hex.h"
 int main(){
 	char simb;
 	int i;
@@ -16,30 +19,44 @@ int main(){
 			if(simb == '+'){
 				int res = Atoi_2(num1) + Atoi_2(num2);
 				DecToBin(res);
+				printf(" (%d)", res);
 			}
 			if(simb == '-'){
 				int res = Atoi_2(num1) - Atoi_2(num2);
+				if (res < 0){
+					res = -res;
 				DecToBin(res);
+				printf(" (-%d)", res);
+				}
+				else{
+					DecToBin(res);
+					printf(" (%d)", res);
+				}
 			}
 			if(simb == '*'){
 				int res = Atoi_2(num1) * Atoi_2(num2);
 				DecToBin(res);
+				printf(" (%d)", res);
 			}
 			if(simb == '%'){
 				int res = Atoi_2(num1) % Atoi_2(num2);
 				DecToBin(res);
+				printf(" (%d)", res);
 			}
 			if(simb == '&'){
 				int res = Atoi_2(num1) & Atoi_2(num2);
 				DecToBin(res);
+				printf(" (%d)", res);
 			}
 			if(simb == '|'){
 				int res = Atoi_2(num1) | Atoi_2(num2);
 				DecToBin(res);
+				printf(" (%d)", res);
 			}
 			if(simb == '^'){
 				int res = Atoi_2(num1) ^ Atoi_2(num2);
 				DecToBin(res);
+				printf(" (%d)", res);
 			}
 		} 
 		else if (num1[0] == '0' && num1[1] != 'x' && num2[0] == '0' && num2[1] !='x' ){
@@ -50,30 +67,45 @@ int main(){
 			if(simb == '+'){
 				int res = Atoi_8(num1) + Atoi_8(num2);
 				DecToOctal(res);
+				printf(" (%d)", res);
+				
 			}
 			if(simb == '-'){
 				int res = Atoi_8(num1) - Atoi_8(num2);
+				if (res < 0){
+					res = -res;
 				DecToOctal(res);
+				printf(" (-%d)", res);
+				}
+				else{
+					DecToOctal(res);
+					printf(" (%d)", res);
+				}
 			}
 			if(simb == '*'){
 				int res = Atoi_8(num1) * Atoi_8(num2);
 				DecToOctal(res);
+				printf(" (%d)", res);
 			}
 			if(simb == '%'){
 				int res = Atoi_8(num1) % Atoi_8(num2);
 				DecToOctal(res);
+				printf(" (%d)", res);
 			}
 			if(simb == '&'){
 				int res = Atoi_8(num1) & Atoi_8(num2);
 				DecToOctal(res);
+				printf(" (%d)", res);
 			}
 			if(simb == '|'){
 				int res = Atoi_8(num1) | Atoi_8(num2);
 				DecToOctal(res);
+				printf(" (%d)", res);
 			}
 			if(simb == '^'){
 				int res = Atoi_8(num1) ^ Atoi_8(num2);
 				DecToOctal(res);
+				printf(" (%d)", res);
 			}
 		}
 		else if (num1[0] == '0' && num1[1] == 'x' && num2[0] == '0' && num2[1] == 'x'){
@@ -82,44 +114,49 @@ int main(){
 			memmove(&num2[0], &num2[2], x - 1);
 			if(simb == '+'){
 				int res = Atoi_16(num1) + Atoi_16(num2);
-				printf("0x%x \n",res);
+				printf("0x%x (%d) \n",res,res);
 			}
 			if(simb == '-'){
 				int res = Atoi_16(num1) - Atoi_16(num2);
 				if (res < 0){
 					res = -res;
+					printf("-0x%x (-%d) \n",res,res);
 				}
-				printf("-0x%x \n",res);
+				else{
+					printf("0x%x (%d) \n",res,res);
+				}					
+	
 			}
 			if(simb == '*'){
 				int res = Atoi_16(num1) * Atoi_16(num2);
-				printf("0x%x \n",res);
+				printf("0x%x (%d) \n",res,res);
 			}
 			if(simb == '%'){
 				int res = Atoi_16(num1) % Atoi_16(num2);
-				printf("-0x%x \n",res);
+				printf("0x%x (%d) \n",res,res);
 			}
 			if(simb == '&'){
 				int res = Atoi_16(num1) & Atoi_16(num2);
-				printf("0x%x \n",res);
+				printf("0x%x (%d) \n",res,res);
 			}
 			if(simb == '|'){
 				int res = Atoi_16(num1) | Atoi_16(num2);
-				printf("0x%x \n",res);
+				printf("0x%x (%d) \n",res,res);
 			}
 			if(simb == '^'){
 				int res = Atoi_16(num1) ^ Atoi_16(num2);
-				printf("0x%x \n",res);
+				printf("0x%x (%d) \n",res,res);
 			}
 		}
 		else{
 			printf("Ошибка: системы счисления не совпадают\n ");
 		}
 	}
-	if (sscanf(line,"~%s",num2) == 1){
+	else if (sscanf(line,"~%s",num2) == 1){
 		if (num2[0] != '0' && num2[1] != 'x'){
 			int res = ~ (Atoi_2(num2));
 			DecToBin(res);
+			printf("(%d)", res);
 		}
 		if(num2[0] == '0' && num2[1] != 'x'){
 			int x = strlen(num2);
@@ -127,13 +164,15 @@ int main(){
 			int res;
 			res = ~(Atoi_8(num2));
 			DecToOctal(res);
+			printf("(%d)", res);
 		}
 		if(num2[0] == '0' && num2[1] == 'x'){
 			int x = strlen(num2);
 			memmove(&num2[0], &num2[2], x - 1);
 			int res;
 			res = ~(Atoi_16(num2));
-			printf("0x%x",res);
+			printf("0x%x (%d)",res,res);
+			
 		}
 	}
 	else{
