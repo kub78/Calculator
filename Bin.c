@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
 void DecToBin(int n)
  {
  	if (n < 0){
@@ -14,6 +15,7 @@ void DecToBin(int n)
 	printf("%d", n % 2);
  
 }
+
 int Pow_2(int size){
 	int num = 1;
 	for(int i = 0 ;i < size; i++){
@@ -21,6 +23,7 @@ int Pow_2(int size){
 	}
 	return num;
 }
+
 int Atoi_2(char* str) {
 	int num = 0;
 	int flag = 1;

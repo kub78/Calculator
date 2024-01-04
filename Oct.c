@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
 int Pow_8(int size){
 	int num = 1;
 	for(int i = 0 ;i < size; i++){
@@ -8,6 +9,7 @@ int Pow_8(int size){
 	}
 	return num;
 }
+
 int Atoi_8(char* str){
 	int num = 0;
 	int flag = 1;
@@ -28,6 +30,7 @@ int Atoi_8(char* str){
 	}
 	return num * flag;
 }
+
 void DecToOctal(int n)
  {
  	if (n < 0){
